@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponse
 from models import Pages
@@ -50,10 +51,10 @@ def homePage(request):
                 p.save()
                 respuesta = 'Todo Ok!'
             except:
-                respuesta = 'Nada Ok... El formato debe ser... Titulo:\
+                respuesta = 'Nada Ok... El formato debe ser... Título:\
                              texto. En el cuerpo del PUT'
         else:
-            respuesta = 'Para crear Paginas debe logearse...'
+            respuesta = 'Para crear Páginas debe logearse...'
     return HttpResponse(respuesta)
     
     
@@ -70,11 +71,11 @@ def createPage(request):
         texto=texto.replace('+',' ')
         pageAux = Pages(name=pagina, page=texto)
         pageAux.save()
-        respuesta = 'Pagina Almecenada adecuadamente, continuemos!'\
+        respuesta = 'Página Almecenada adecuadamente, continuemos!'\
                     + '<meta http-equiv="Refresh" content="3;\
                     url=http://127.0.0.1:8000/mod/">'
     else:
-        respuesta = 'Pagina no permitida, redirigiendo...'\
+        respuesta = 'Página no permitida, redirigiendo...'\
                     + '<meta http-equiv="Refresh" content="3;\
                     url=http://127.0.0.1:8000/">'
 
@@ -82,9 +83,9 @@ def createPage(request):
     
 
 def managePages(request):
-    respuesta = '<h3>Creacion de Paginas</h3>'\
+    respuesta = '<h3>Creación de Páginas</h3>'\
                 +'<form method="POST" action="/createPage/">'\
-                +'Titulo Pagina: <input type="text" name="pagina"><br>'\
+                +'Título Página: <input type="text" name="pagina"><br>'\
                 +'Texto: <input type="text"name="texto"><br>'\
                 +'<input type="submit" value="Crear">'\
                 +'</form>'
@@ -96,7 +97,12 @@ def redirectHome(request):
                  url=http://127.0.0.1:8000/">'
     return HttpResponse(respuesta)
 
-
+"""
+Modificaqr existente: listar toda la BD en vista 'mod/' con enlaces que incluyan el id de la opcion seleccionada. en url redireccionar con (d) para capturar el identificador. En nuevo def en views trabajar con la BD en cuestion tipo:
+pagina = Pages.objects.get(id=pageID)
+Primero) nuevo formulario y ver como sobreescribir en la BD
+evolucion) mostrar texto editable...
+"""
 
     
  
